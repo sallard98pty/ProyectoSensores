@@ -1,7 +1,12 @@
 package com.example.proyectosensores;
 
 import androidx.appcompat.app.AppCompatActivity;
-
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
+import android.widget.TextView;
+import java.util.List;
 import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
@@ -11,20 +16,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // se inicia el mensaje de bienvenida que notifica al ususario que debe elegir una de las opciones de la lista que se le muestra
+        CharSequence[] choices = {"Choice1", "Choice2", "Choice3"};
+        boolean[] choicesInitial = {false, true, false};
+        AlertDialog.Builder alertDialogBuilder = new MaterialAlertDialogBuilder(getContext())
+                .setTitle(title)
+                .setPositiveButton("Accept", null)
+                .setNeutralButton("Cancel", null)
+                .setMultiChoiceItems(choices, choicesInitial, new DialogInterface.OnMultiChoiceClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which, boolean isChecked) {
 
-
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        tv4=findViewById(R.id.tv4);
-// Configura el titulo.
-        alertDialogBuilder.setTitle("Proyecto 2");
-// Configura el mensaje.
-        alertDialogBuilder
-                .setMessage("Por favor, escoja una de las 3 opciones que se le muestra :)")
-                .setPositiveButton("OK",new DialogInterface.OnClickListener()
-                {
-                    public void onClick(DialogInterface dialog,int id) {
-                        img1.setVisibility(View.VISIBLE);
-                    }).create().show();
+                    }
+                });
+        alertDialogBuilder.show();
     }
 }
