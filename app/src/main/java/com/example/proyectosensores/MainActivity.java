@@ -16,12 +16,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        CharSequence[] choices = {"Choice1", "Choice2", "Choice3"};
+        CharSequence[] choices = {"Temperatura", "Ubicación GPS", "Iluminación"};
         boolean[] choicesInitial = {false, true, false};
         AlertDialog.Builder alertDialogBuilder = new MaterialAlertDialogBuilder(getContext())
                 .setTitle(title)
-                .setPositiveButton("Accept", null)
-                .setNeutralButton("Cancel", null)
+                .setPositiveButton("Aceptar", null)
+                .setNeutralButton("Cancelar", null)
                 .setMultiChoiceItems(choices, choicesInitial, new DialogInterface.OnMultiChoiceClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which, boolean isChecked) {
