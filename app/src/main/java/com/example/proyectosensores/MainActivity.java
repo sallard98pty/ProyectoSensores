@@ -1,12 +1,10 @@
 package com.example.proyectosensores;
 
 import androidx.appcompat.app.AppCompatActivity;
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.hardware.Sensor;
-import android.hardware.SensorManager;
-import android.widget.TextView;
-import java.util.List;
+
+import android.content.Intent;
+import android.view.View;
+import android.widget.Button;
 import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
@@ -15,19 +13,31 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Button btntemp = findViewById(R.id.btntemp);
+        Button btnproximity = findViewById(R.id.btnproximity);
+        Button btnluz = findViewById(R.id.btnLuz);
 
-        CharSequence[] choices = {"Temperatura", "Ubicación GPS", "Iluminación"};
-        boolean[] choicesInitial = {false, true, false};
-        AlertDialog.Builder alertDialogBuilder = new MaterialAlertDialogBuilder(getContext())
-                .setTitle(title)
-                .setPositiveButton("Aceptar", null)
-                .setNeutralButton("Cancelar", null)
-                .setMultiChoiceItems(choices, choicesInitial, new DialogInterface.OnMultiChoiceClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+        btntemp.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent TempIntent = new Intent(MainActivity.this, TemperaturaActivity.class);
+                startActivity(TempIntent);
+            }
+        });
+        btnproximity.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent ProxIntent = new Intent(MainActivity.this, ProximityActivity.class);
+                startActivity(ProxIntent);
 
-                    }
-                });
-        alertDialogBuilder.show();
+            }
+        });
+
+        btnluz.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent LumiIntent = new Intent(MainActivity.this, IluminacionActivity.class);
+                startActivity(LumiIntent);
+
+            }
+        });
+
     }
 }
