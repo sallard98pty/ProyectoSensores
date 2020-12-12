@@ -39,6 +39,8 @@ public class ProximityActivity extends AppCompatActivity {
         sensorManager.unregisterListener(ProximityListener);
     }
     //Crea el Listener
+
+    //En esta seccion de codigo escucharemos los cambios del Sensor
     public SensorEventListener ProximityListener = new SensorEventListener() {
         @Override
         public void onAccuracyChanged(Sensor sensor, int i) {
