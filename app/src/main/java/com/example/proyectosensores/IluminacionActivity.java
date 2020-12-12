@@ -15,6 +15,8 @@ public class IluminacionActivity extends AppCompatActivity {
     private TextView txtluminity;
     private Sensor luminity;
 
+    //Se inicializan trodas las variables
+    //Se crean los objetos para manejar los sensores
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,23 +28,26 @@ public class IluminacionActivity extends AppCompatActivity {
         txtluminity.setText("");
     }
 
+    //Registro el Listener
     public void onResume() {
         super.onResume();
         sensorManager.registerListener(luminityListener, luminity, SensorManager.SENSOR_DELAY_NORMAL);
     }
-
+    //Quita el Registro el Listener
     public void onStop() {
         super.onStop();
         sensorManager.unregisterListener(luminityListener);
     }
 
+
+    //Crea el Listener
     public SensorEventListener luminityListener = new SensorEventListener() {
         @Override
         public void onAccuracyChanged(Sensor sensor, int i) {
 
         }
 
-
+        //Escucha las variaciones del sensor
         @Override
         public void onSensorChanged(SensorEvent sensorEvent) {
             String temptext = String.valueOf((int) sensorEvent.values[0] + " lx");

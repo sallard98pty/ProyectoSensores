@@ -16,7 +16,8 @@ public class ProximityActivity extends AppCompatActivity {
     private TextView txtProxy;
     private Sensor proximity;
 
-
+    //Se inicializan trodas las variables
+    //Se crean los objetos para manejar los sensores
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,23 +27,25 @@ public class ProximityActivity extends AppCompatActivity {
         proximity = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
         txtProxy.setText("");
     }
+
+    //Registro el Listener
     public void onResume() {
         super.onResume();
         sensorManager.registerListener(ProximityListener, proximity, SensorManager.SENSOR_DELAY_NORMAL);
     }
-
+    //Quita el Registro el Listener
     public void onStop() {
         super.onStop();
         sensorManager.unregisterListener(ProximityListener);
     }
-
+    //Crea el Listener
     public SensorEventListener ProximityListener = new SensorEventListener() {
         @Override
         public void onAccuracyChanged(Sensor sensor, int i) {
 
         }
 
-
+        //Escucha las variaciones del sensor
         @Override
         public void onSensorChanged(SensorEvent sensorEvent) {
             String proxytext = String.valueOf((int) sensorEvent.values[0] + "cm");

@@ -15,7 +15,8 @@ public class TemperaturaActivity extends AppCompatActivity  {
     private  TextView txtTemp;
     private Sensor temperature;
 
-
+    //Se inicializan trodas las variables
+    //Se crean los objetos para manejar los sensores
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,23 +26,24 @@ public class TemperaturaActivity extends AppCompatActivity  {
         temperature = sensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
         txtTemp.setText("");
     }
+    //Registro el Listener
     public void onResume() {
         super.onResume();
         sensorManager.registerListener(temperatureListener, temperature, SensorManager.SENSOR_DELAY_NORMAL);
     }
-
+    //Quita el Registro el Listener
     public void onStop() {
         super.onStop();
         sensorManager.unregisterListener(temperatureListener);
     }
-
+    //Crea el Listener
     public SensorEventListener temperatureListener = new SensorEventListener() {
         @Override
         public void onAccuracyChanged(Sensor sensor, int i) {
 
         }
 
-
+        //Escucha las variaciones del sensor
         @Override
         public void onSensorChanged(SensorEvent sensorEvent) {
             String temptext = String.valueOf((int) sensorEvent.values[0] + "°C");
